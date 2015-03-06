@@ -1,5 +1,5 @@
 E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.Contracts\bin\Debug\DirectoryScaner.Contracts.dll
 E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.Contracts\bin\Debug\DirectoryScaner.Contracts.pdb
-E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.Contracts\obj\Debug\DirectoryScaner.Contracts.csprojResolveAssemblyReference.cache
 E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.Contracts\obj\Debug\DirectoryScaner.Contracts.dll
 E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.Contracts\obj\Debug\DirectoryScaner.Contracts.pdb
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.Contracts\obj\Debug\DirectoryScaner.Contracts.csprojResolveAssemblyReference.cache

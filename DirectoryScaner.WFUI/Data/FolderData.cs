@@ -45,16 +45,10 @@ namespace DirectoryScaner.WFUI.Data
 
             var specialInfo = infoForRights.GetAccessControl(AccessControlSections.Owner);
             dictionary.Add("Owner", specialInfo.GetOwner(typeof(NTAccount)).Value);
-            /*
+
             specialInfo = infoForRights.GetAccessControl(AccessControlSections.Access);
-            var rules = specialInfo.GetAccessRules(true, true, typeof(SecurityIdentifier));
-            */
-            var accessRights = String.Empty;
-            /*
-            foreach (FileSystemAccessRule rule in rules) {
-                accessRights += rule.FileSystemRights + " | ";
-            }
-             */
+            var rules = specialInfo.GetAccessRules(true, true, typeof (SecurityIdentifier));
+            var accessRights =  GetAccessRights(rules);
             dictionary.Add("Rights", accessRights);
 
             return dictionary;
@@ -74,6 +68,41 @@ namespace DirectoryScaner.WFUI.Data
                     .Sum(file => file.Length);
                 GetFolderSize(directory, ref size, false);
             }
+        }
+
+        private static string GetAccessRights(dynamic rules) {
+            var accessRights = String.Empty;
+            var userIdentity = WindowsIdentity.GetCurrent();
+            
+            foreach (FileSystemAccessRule rule in rules) {
+                var sid = (SecurityIdentifier) rule.IdentityReference;
+
+                if ((!sid.IsAccountSid() || userIdentity.User != sid) && (sid.IsAccountSid() || !userIdentity.Groups.Contains(sid)))
+                    continue;
+                if (rule.AccessControlType != AccessControlType.Allow) continue;
+                if (((rule.FileSystemRights & FileSystemRights.WriteData) == FileSystemRights.WriteData)) {
+                    if(!accessRights.Contains("Write"))
+                        accessRights += "Write | ";
+                }
+                if (((rule.FileSystemRights & FileSystemRights.ReadData) == FileSystemRights.ReadData)) {
+                    if (!accessRights.Contains("Copy"))
+                        accessRights += "Copy | ";
+                }
+                if (((rule.FileSystemRights & FileSystemRights.AppendData) == FileSystemRights.AppendData)) {
+                    if (!accessRights.Contains("Append")) 
+                        accessRights += "Append | ";
+                }
+                if (((rule.FileSystemRights & FileSystemRights.Delete) == FileSystemRights.Delete)) {
+                    if (!accessRights.Contains("Delete")) 
+                        accessRights += "Delete | ";
+                }
+                if (((rule.FileSystemRights & FileSystemRights.FullControl) != FileSystemRights.FullControl)) continue;
+                if (!accessRights.Contains("Full Control")) {
+                    accessRights = "Full Control";
+		    break;
+		}
+            }
+            return accessRights;
         }
     }
 }

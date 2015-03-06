@@ -1,8 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryScaner.WFUI", "DirectoryScaner.WFUI\DirectoryScaner.WFUI.csproj", "{63557302-44D2-4A59-8143-3E126A474F09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryScaner.Contracts", "DirectoryScaner.Contracts\DirectoryScaner.Contracts.csproj", "{0DA0707F-2BE7-49F3-A5DE-6F6A2B5893F2}"

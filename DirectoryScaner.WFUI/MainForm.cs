@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
@@ -118,7 +119,7 @@ namespace DirectoryScaner.WFUI
         }
 
         private void DisplayError(Exception e) {
-            richTextBox_info.Text = String.Format(e.Message + Environment.NewLine) + richTextBox_info.Text;
+            richTextBox_info.Text = String.Format(e.Message.ToString(CultureInfo.InvariantCulture) + Environment.NewLine) + richTextBox_info.Text;
         }
 
         #endregion
@@ -145,9 +146,11 @@ namespace DirectoryScaner.WFUI
                 _scaner = new DirectoryScaner(_folderData, InitializeErrorDisplay);
                 _scaner.Scan(String.Empty, _mainDirectory, new List<string>());
                 MessageBox.Show(Resources.MainForm_Scanning_is_finished, Resources.MainForm_Header_Finished);
-                EnableElements();
+                _writeThread.Abort();
+                _folderData = new FolderData();
+                var callback = new Action(EnableElements);
+                Invoke(callback);
             }) { Name = "Scaner" };
-
             _scanThread.Start();
         }
 
@@ -157,11 +160,7 @@ namespace DirectoryScaner.WFUI
             _scanThread.Abort();
             _writeThread.Abort();
             Application.DoEvents();
-            
-            MainAwaiter.Reset();
-            ScanerAwaiter.Reset();
-            TreeAwaiter.Reset();
-            EnableElements();
+            StopScanning();
             _folderData = new FolderData();
         }
 
@@ -221,6 +220,14 @@ namespace DirectoryScaner.WFUI
             button_cancelScan.Enabled = false;
             button_scan.Enabled = true;
             comboBox_directories.Enabled = true;
+        }
+
+        private void StopScanning() {
+            MainAwaiter.Reset();
+            ScanerAwaiter.Reset();
+            TreeAwaiter.Reset();
+            WriterAwaiter.Reset();
+            EnableElements();
         }
         
         private void DisplayInfo(FileSystemInfo info) {
