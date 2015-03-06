@@ -1,0 +1,11 @@
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\obj\Debug\DirectoryScaner.WFUI.MainForm.resources
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\obj\Debug\DirectoryScaner.WFUI.Properties.Resources.resources
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\obj\Debug\DirectoryScaner.WFUI.csproj.GenerateResource.Cache
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\obj\Debug\DirectoryScaner.WFUI.csprojResolveAssemblyReference.cache
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\bin\Debug\DirectoryScaner.Contracts.dll
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\bin\Debug\DirectoryScaner.Contracts.pdb
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\bin\Debug\DirectoryScaner.exe.config
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\bin\Debug\DirectoryScaner.exe
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\bin\Debug\DirectoryScaner.pdb
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\obj\Debug\DirectoryScaner.exe
+E:\Учеба\Plarium\DirectoryScaner\DirectoryScaner\DirectoryScaner.WFUI\obj\Debug\DirectoryScaner.pdb
