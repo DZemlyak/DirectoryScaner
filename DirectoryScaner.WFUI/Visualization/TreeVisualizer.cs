@@ -1,6 +1,6 @@
 ﻿using DirectoryScaner.Contracts;
 
-namespace DirectoryScaner.WFUI
+namespace DirectoryScaner.WFUI.Visualization
 {
     public sealed class TreeVisualizer : IVisualizer
     {

@@ -7,7 +7,9 @@ using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
 using DirectoryScaner.Contracts;
+using DirectoryScaner.WFUI.Data;
 using DirectoryScaner.WFUI.Properties;
+using DirectoryScaner.WFUI.Visualization;
 
 namespace DirectoryScaner.WFUI
 {
@@ -45,7 +47,7 @@ namespace DirectoryScaner.WFUI
         public MainForm() {
             InitializeComponent();
 
-            StartConfig.GetLogicalDrives(comboBox_directories);
+            StartConfig.StartConfig.GetLogicalDrives(comboBox_directories);
 
             saveFileDialog_file_path.InitialDirectory = Environment.SpecialFolder.MyDocuments.ToString();
             
@@ -238,7 +240,7 @@ namespace DirectoryScaner.WFUI
         private delegate void DisplayFolderSizeCallback(long size);
         private void CountDirectorySize(DirectoryInfo info) {
             long size = 0;
-            Func<long> getSize = () => FolderData.GetFolderSize(info, ref size);
+            Action getSize = () => FolderData.GetFolderSize(info, ref size, true);
             var callback = new DisplayFolderSizeCallback(DisplayDirectorySize);
             getSize.BeginInvoke(delegate { Invoke(callback, size); }, null);
         }

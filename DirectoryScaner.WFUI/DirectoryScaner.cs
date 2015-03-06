@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using DirectoryScaner.Contracts;
+using DirectoryScaner.WFUI.Data;
 
 namespace DirectoryScaner.WFUI
 {

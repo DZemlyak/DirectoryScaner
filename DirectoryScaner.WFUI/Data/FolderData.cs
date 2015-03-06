@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Principal;
 
-namespace DirectoryScaner.WFUI
+namespace DirectoryScaner.WFUI.Data
 {
     public class FolderData
     {
@@ -64,14 +64,16 @@ namespace DirectoryScaner.WFUI
             return info.Length;
         }
 
-        public static long GetFolderSize(DirectoryInfo info, ref long size) {
+        public static void GetFolderSize(DirectoryInfo info, ref long size, bool countRootFiles) {
+            if (countRootFiles) {
+                size += info.GetFiles().Where(file => !file.Attributes.HasFlag(FileAttributes.Hidden)).Sum(file => file.Length);
+            }
             foreach (var directory in info.GetDirectories()
                 .Where(directory => !directory.Attributes.HasFlag(FileAttributes.Hidden))) {
-                size += directory.GetFiles().Sum(file => file.Length);
-                GetFolderSize(directory, ref size);
+                size += directory.GetFiles().Where(file => !file.Attributes.HasFlag(FileAttributes.Hidden))
+                    .Sum(file => file.Length);
+                GetFolderSize(directory, ref size, false);
             }
-            return size;
         }
-
     }
 }

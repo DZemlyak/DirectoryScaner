@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Xml;
 using DirectoryScaner.Contracts;
 
-namespace DirectoryScaner.WFUI
+namespace DirectoryScaner.WFUI.Data
 {
     public class XmlWriter : IWriter
     {
@@ -70,6 +71,9 @@ namespace DirectoryScaner.WFUI
                     AddFilesNodes(document, directoryElement);
                 }
             }
+            catch (IdentityNotMappedException e) {
+                _errorCallBack(new Exception("Cannot get user's identity for a node!"));
+            }
             catch (Exception e) {
                 _errorCallBack(e);
             }
@@ -122,7 +126,7 @@ namespace DirectoryScaner.WFUI
         private static void AddDirectorySize(XmlDocument document, XmlNode element, DirectoryInfo info) {
             long size = 0;
             var attribute = document.CreateAttribute("Size");
-            FolderData.GetFolderSize(info, ref size);
+            FolderData.GetFolderSize(info, ref size, true);
             attribute.Value = size / 1000000 == 0 ? size / 1000 + " KB" : size / 1000000 + " MB";
             element.Attributes.Append(attribute);
         }

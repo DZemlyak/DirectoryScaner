@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 
-namespace DirectoryScaner.WFUI
+namespace DirectoryScaner.WFUI.StartConfig
 {
     static class StartConfig {
         public static void GetLogicalDrives(ComboBox control) {
